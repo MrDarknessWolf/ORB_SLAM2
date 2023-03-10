@@ -1,3 +1,8 @@
+# Modifications
+-->Changed the Cmake file so it can be build as make install.
+-->Changed Thirdparty and main Cmake so it doenst search for a missing path of open cv.
+
+----------------------------------------------------------------------------------------
 # ORB-SLAM2 - Updated for C++14, OpenCV 4, and Pangolin 0.6
 The original ORB-SLAM2 code requires OpenCV 3.2, Pangolin 0.5 and is tested with C++11. Many people complained about building both the original version, or a version with the latest packages:
 - Pangolin was updated to version 0.6 to comply with C++17 - this version cannot be used for building ORB-SLAM2
