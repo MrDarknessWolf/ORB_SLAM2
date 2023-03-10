@@ -1,5 +1,6 @@
 # Modifications
 -->Changed the Cmake file so it can be build as make install.
+
 -->Changed Thirdparty and main Cmake so it doenst search for a missing path of open cv.
 
 ----------------------------------------------------------------------------------------
