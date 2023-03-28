@@ -28,7 +28,7 @@ endif()
 
 LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake_modules)
 
-find_package(OpenCV 4.5.4 QUIET)
+find_package(OpenCV 4.0 QUIET)
 if(NOT OpenCV_FOUND)
    find_package(OpenCV 2.4.3 QUIET)
    if(NOT OpenCV_FOUND)
@@ -38,8 +38,7 @@ endif()
 
 find_package(Eigen3 3.1.0 REQUIRED NO_MODULE)
 find_package(Pangolin REQUIRED)
-##
-find_package(realsense2 REQUIRED)
+
 
 include_directories(
 ${PROJECT_SOURCE_DIR}
@@ -47,8 +46,7 @@ ${PROJECT_SOURCE_DIR}/include
 ${EIGEN3_INCLUDE_DIR}
 ${Pangolin_INCLUDE_DIRS}
 
-##
-${realsense2_INCLUDE_DIRS}
+
 )
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
@@ -85,41 +83,6 @@ ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/lib/libg2o.so
 
 # Build examples
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Examples/RGB-D)
-
-add_executable(rgbd_tum
-Examples/RGB-D/rgbd_tum.cc)
-target_link_libraries(rgbd_tum ${PROJECT_NAME})
-########
-# Add by JingYL 20200611
-add_executable(rgbd_realsense
-Examples/RGB-D/rgbd_realsense.cc)
-target_link_libraries(rgbd_realsense ${PROJECT_NAME} ${realsense2_LIBRARY})
-######
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Examples/Stereo)
-
-add_executable(stereo_kitti
-Examples/Stereo/stereo_kitti.cc)
-target_link_libraries(stereo_kitti ${PROJECT_NAME})
-
-add_executable(stereo_euroc
-Examples/Stereo/stereo_euroc.cc)
-target_link_libraries(stereo_euroc ${PROJECT_NAME})
-
-
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Examples/Monocular)
-
-add_executable(mono_tum
-Examples/Monocular/mono_tum.cc)
-target_link_libraries(mono_tum ${PROJECT_NAME})
-
-add_executable(mono_kitti
-Examples/Monocular/mono_kitti.cc)
-target_link_libraries(mono_kitti ${PROJECT_NAME})
-
-add_executable(mono_euroc
-Examples/Monocular/mono_euroc.cc)
-target_link_libraries(mono_euroc ${PROJECT_NAME})
 ###################################
 
 
@@ -177,7 +140,5 @@ install(
     DESTINATION ${CMAKECONFIG_INSTALL_DIR}
 )
 
-include_directories(${OpenCV_INCLUDE_DIRS})
-add_library(DBoW2 SHARED ${SRCS_DBOW2} ${SRCS_DUTILS})
-target_link_libraries(DBoW2 ${OpenCV_LIBS})
+
 
